@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(),
+      home: const DemoPage(),
     );
   }
 }
@@ -75,9 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 prefs.setString(KEYNAME, name);
 
-
+  
               }, child:Text("Save",style: TextStyle(
-                fontSize: 17,
+                fontSize: 17,   
                 color: Colors.white
               ),)),
             ),
@@ -98,5 +98,44 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       
     });
+  }
+}
+class DemoPage extends StatelessWidget {
+  const DemoPage({super.key});
+
+  // SAVE DATA
+  Future<void> saveName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('name', 'Shaurya');
+  }
+
+  // READ DATA
+  Future<void> readName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? name = prefs.getString('name');
+    debugPrint(name); // shows in console
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("SharedPreferences Demo")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: saveName,
+              child: const Text("SAVE NAME"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: readName,
+              child: const Text("READ NAME"),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
