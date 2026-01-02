@@ -13,11 +13,6 @@ class _SaveReadNumberState extends State<SaveReadNumber> {
   TextEditingController rollNoController = TextEditingController();
   TextEditingController ageController = TextEditingController();
 
-  void clearController(){
-    nameController.clear();
-    ageController.clear();
-    rollNoController.clear();
-  }
 
   @override
   void dispose() {
