@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sharedprefernces/Provider/AuthProvider.dart';
 import 'package:sharedprefernces/Provider/FunctionsProvider.dart';
-import 'package:sharedprefernces/Screens/SaveReadDeleteUsingProvider.dart';
+import 'package:sharedprefernces/Screens/Login%20Using%20Provide%20&%20Shared%20Prefernces/SplashScreen.dart';
 
 void main() {
   runApp(
@@ -9,6 +10,9 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (_) => FunctionsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
         ),
       ],
       child: const MyApp(),
@@ -29,7 +33,7 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.deepPurple,
         ),
       ),
-      home: ProviderUsage(), // your screen
+      home: SplashScreen(), // your screen
     );
   }
 }
